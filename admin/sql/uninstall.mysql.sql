@@ -1,0 +1,1 @@
+DROP TABLE `#__board_categories`,`#__board_post`,`#__board_types`;

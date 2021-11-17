@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<extension type="component" method="upgrade">
+    <name>COM_BOARD</name>
+    <authorUrl>https://spod96.ru</authorUrl>
+    <authorEmail>liders05@mail.ru</authorEmail>
+    <version>0.0.1</version>
+    <description>COM_BOARD_DESCRIPTION</description>
+
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.sql</file>
+        </sql>
+    </install>
+
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.sql</file>
+        </sql>
+    </uninstall>
+
+    <update>
+        <schemas>
+            <schemapath type="mysql">sql/updates/mysql</schemapath>
+        </schemas>
+    </update>
+
+    <scriptfile>script.php</scriptfile>
+
+    <languages folder="site">
+        <language tag="ru-RU">language/ru-RU/ru-RU.com_board.ini</language>
+    </languages>
+    <files folder="site">
+        <folder>assets</folder>
+        <folder>controllers</folder>
+        <folder>helpers</folder>
+        <folder>language</folder>
+        <folder>models</folder>
+        <folder>views</folder>
+
+        <filename>controller.php</filename>
+        <filename>board.php</filename>
+        <filename>index.html</filename>
+        <filename>router.php</filename>
+    </files>
+    <media destination="com_board" folder="media">
+        <folder>images</folder>
+        <folder>css</folder>
+        <filename>index.html</filename>
+    </media>
+    <administration>
+        <menu link="option=com_board">COM_BOARD_MENU_NAME</menu>
+
+        <submenu>
+            <menu view="messages">COM_BOARD_MENU_MESSAGES</menu>
+            <menu view="categories">COM_BOARD_MENU_CATEGORIES</menu>
+            <menu view="types">COM_BOARD_MENU_TYPES</menu>
+        </submenu>
+        <files folder="admin">
+            <folder>assets</folder>
+            <folder>controllers</folder>
+            <folder>helpers</folder>
+            <folder>language</folder>
+            <folder>layouts</folder>
+            <folder>models</folder>
+            <folder>sql</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
+
+            <filename>access.xml</filename>
+            <filename>board.php</filename>
+            <filename>config.xml</filename>
+            <filename>controller.php</filename>
+            <filename>index.html</filename>
+        </files>
+        <languages folder="admin">
+            <language tag="ru-RU">language/ru-RU/ru-RU.com_board.ini</language>
+            <language tag="ru-RU">language/ru-RU/ru-RU.com_board.sys.ini</language>
+        </languages>
+
+    </administration>
+</extension>

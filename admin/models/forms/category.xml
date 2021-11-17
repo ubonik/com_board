@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<form>
+    <fieldset addfieldpath="/administrator/components/com_board/models/fields">
+        <field
+                name="id"
+                type="hidden"
+        />
+        <field
+                name="name"
+                type="text"
+                default=""
+                label="COM_BOARD_CATEGORY_TITLE"
+                description="COM_BOARD_CATEGORY_TITLE_DESCRIPTION"
+                filter="raw"
+                required="true"
+                class="inputbox validate-name"
+        />
+        <field
+                name="parentid"
+                type="categoryparent"
+                default="0"
+                label="COM_BOARD_CATEGORY_PARENT"
+                description="COM_BOARD_CATEGORY_PARENT_DESCRIPTION"
+                filter="raw"
+        />
+        <field
+                name="alias"
+                type="text"
+                default=""
+                label="COM_BOARD_CATEGORY_ALIAS"
+                description="COM_BOARD_CATEGORY_ALIAS_DESCRIPTION"
+                filter="raw"
+        />
+        <field name="state" type="list" default="1" label="JSTATUS" class="chzn-color-state" >
+            <option value="0">JUNPUBLISHED</option>
+            <option value="1">JPUBLISHED</option>
+        </field>
+    </fieldset>
+    <fields name="params">
+        <fieldset name="basic" label="COM_BOARD_CATEGORY_PARAMS_BASIC">
+            <field name="show_category" type="list" label="COM_BOARD_CATEGORY_FIELD_SHOW_CATEGORY_LABEL" description="COM_BOARD_CATEGORYFIELD_SHOW_CATEGORY_DESC" default="" class="chzn-color-state" >
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                <option value="0">JHIDE</option>
+                <option value="1">JSHOW</option>
+            </field>
+
+            <field
+                    name="image"
+                    type="media"
+                    label="COM_BOARD_FIELD_IMAGE_LABEL"
+                    description="COM_CATEGORIES_FIELD_IMAGE_DESC" />
+
+            <field
+                    name="image_alt"
+                    type="text"
+                    label="COM_BOARD_FIELD_IMAGE_ALT_LABEL"
+                    description="COM_CATEGORIES_FIELD_IMAGE_ALT_DESC"
+                    size="20" />
+        </fieldset>
+    </fields>
+</form>
