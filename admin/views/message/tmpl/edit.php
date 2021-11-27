@@ -71,7 +71,6 @@ $input = $app->input;
 
         <?php echo HTMLHelper::_('bootstrap.endTab'); ?>
 
-
         <?php echo HTMLHelper::_('bootstrap.endTabSet'); ?>
     </div>
 

@@ -3,7 +3,6 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Router\Route;
-use Joomla\CMS\Language\Text;
 
 HTMLHelper::_('behavior.tooltip');
 HTMLHelper::_('formbehavior.chosen', 'select');
@@ -72,7 +71,7 @@ HTMLHelper::_('formbehavior.chosen', 'select');
                             <?php endif;?>
 
                             <?php $disabled = $this->saveOrder? '': 'disabled="disabled"' ?>
-                            <?php //$cat['ordering'] = !is_null($cat['ordering']) ?: 0;  ?>
+
                             <input type="text" name="order[]" value="<?php echo $cat['ordering'] ?>" <?php echo  $disabled; ?> >
 
                         </td>
@@ -102,8 +101,8 @@ HTMLHelper::_('formbehavior.chosen', 'select');
                                         <?php endif;?>
                                     <?php endif;?>
 
-                                    <?php $disabled = $this->saveOrder? '': 'disabled="disabled"' ?>
-                                    <?php //$sub['ordering'] = !is_null($sub['ordering']) ?: 0;  ?>
+                                    <?php $disabled = $this->saveOrder ? '' : 'disabled="disabled"' ?>
+
                                     <input type="text" name="order[]" value="<?php echo $sub['ordering']; ?>" <?= $disabled; ?> >
                                 </td>
                                 <td><?php echo $sub['id']; ?></td>

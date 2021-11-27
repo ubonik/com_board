@@ -9,16 +9,6 @@ use Joomla\CMS\Language\Text;
 HTMLHelper::_('behavior.keepalive');
 HTMLHelper::_('formbehavior.chosen', 'select');
 
-   // echo $this->form->getField('name')->renderField();
-   //$fields = $this->form->getFieldset();
-/*
-   foreach ($fields as $field) {
-
-       echo $field->renderField();
-
-   }*/
-
-
 ?>
 
 <form action="<?php echo Route::_('index.php?option=com_board&layout=edit&id=' . (int)$this->item->id ) ?>"

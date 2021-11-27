@@ -5,7 +5,8 @@ use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
 ?>
 
-<form action="<?php echo Route::_("index.php?option=com_board&view=types") ?>" method="POST" name="adminForm" id="adminForm">
+<form action="<?php echo Route::_("index.php?option=com_board&view=types") ?>"
+      method="POST" name="adminForm" id="adminForm">
     <?php if ($this->sidebar): ?>
         <div id="j-sidebar-container" class="span2">
             <?php echo $this->sidebar; ?>

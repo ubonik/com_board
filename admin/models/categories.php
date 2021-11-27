@@ -31,7 +31,7 @@ class BoardModelCategories extends ListModel
         $orderDirn = $db->escape($this->getState('list.direction', 'desc'));
 
         $query->order($orderCol . ' ' . $orderDirn);
-echo $query;
+
         return $query;
     }
 
