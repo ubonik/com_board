@@ -7,12 +7,31 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 
 class BoardControllerMessages extends AdminController
 {
+    /**
+     * The prefix to use with controller messages.
+     *
+     * @var  string
+     *
+     * @since  2.0.0
+     */
     protected $text_prefix = 'COM_BOARD_MESSAGES';
 
+    /**
+     * Proxy for getModel.
+     *
+     * @param   string  $name    The model name.
+     * @param   string  $prefix  The class prefix.
+     * @param   array   $config  The array of possible config values.
+     *
+     * @return  BaseDatabaseModel|BoardModelCategory  A model object.
+     *
+     * @since  2.0.0
+     */
     public function getModel($name = 'Message', $prefix = 'BoardModel', $config = array('ignore_request' => true))
     {
         return parent::getModel($name, $prefix, $config);

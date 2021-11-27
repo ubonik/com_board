@@ -6,6 +6,13 @@ use Joomla\CMS\Factory;
 
 class BoardModelMessages extends ListModel
 {
+    /**
+     * Constructor.
+     *
+     * @param   array  $config  An optional associative array of configuration settings.
+     *
+     * @since  2.0.0
+     */
     public function __construct($config = array())
     {
         if (empty($config['filter_fields']))
@@ -26,6 +33,13 @@ class BoardModelMessages extends ListModel
         parent::__construct($config);
     }
 
+    /**
+     * Method to get a JDatabaseQuery object for retrieving the data set from a database.
+     *
+     * @return  JDatabaseQuery  A JDatabaseQuery object to retrieve the data set.
+     *
+     * @since  2.0.0
+     */
     protected function getListQuery()
     {
         $db = $this->getDbo();
@@ -97,11 +111,28 @@ class BoardModelMessages extends ListModel
         return $query;
     }
 
+    /**
+     * Method to auto-populate the model state.
+     *
+     * @param   string  $ordering   An optional ordering field.
+     * @param   string  $direction  An optional direction (asc|desc).
+     *
+     * @since  2.0.0
+     */
     protected function populateState($ordering = null, $direction = null)
     {
         parent::populateState('id', 'desc');
     }
 
+    /**
+     * Method to get a store id based on model configuration state.
+     *
+     * @param   string  $id  A prefix for the store id.
+     *
+     * @return  string  A store id.
+     *
+     * @since  2.0.0
+     */
     protected function getStoreId($id = '')
     {
         // Compile the store id.

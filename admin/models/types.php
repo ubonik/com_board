@@ -6,6 +6,13 @@ use Joomla\CMS\Factory;
 
 class BoardModelTypes extends ListModel
 {
+    /**
+     * Method to get a JDatabaseQuery object for retrieving the data set from a database.
+     *
+     * @return  JDatabaseQuery  A JDatabaseQuery object to retrieve the data set.
+     *
+     * @since  2.0.0
+     */
     protected function getListQuery()
     {
         $db = $this->getDbo();

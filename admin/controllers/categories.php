@@ -6,19 +6,47 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 class BoardControllerCategories extends AdminController
 {
+    /**
+     * The prefix to use with controller messages.
+     *
+     * @var  string
+     *
+     * @since  2.0.0
+     */
     protected $text_prefix = 'COM_BOARD_CATEGORIES';
 
+    /**
+     * Proxy for getModel.
+     *
+     * @param   string  $name    The model name.
+     * @param   string  $prefix  The class prefix.
+     * @param   array   $config  The array of possible config values.
+     *
+     * @return  BaseDatabaseModel|BoardModelCategory  A model object.
+     *
+     * @since  2.0.0
+     */
     public function getModel($name = 'Category', $prefix = 'BoardModel', $config = array('ignore_request' => true))
     {
         return parent::getModel($name, $prefix, $config);
     }
 
+    /**
+     * Removes an item.
+     *
+     * @return  void
+     *
+     * @throws
+     *
+     * @since   1.6
+     */
     public function delete()
     {
-        Session::checkToken() or die(JText::_('JINVALID_TOKEN'));
+        Session::checkToken() or die(Text::_('JINVALID_TOKEN'));
 
         $app = Factory::getApplication();
         $cid = $this->input->get('cid', [], 'array');

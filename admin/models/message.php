@@ -7,11 +7,26 @@ use Joomla\CMS\Application\ApplicationHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Image\Image;
 use Joomla\Registry\Registry;
-use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Object\CMSObject;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Table\Nested;
+use Joomla\CMS\Table\Table;
+use Joomla\CMS\Form\Form;
 
 class BoardModelMessage extends AdminModel
 {
+    /**
+     * Abstract method for getting the form from the model.
+     *
+     * @param   array    $data      Data for the form.
+     * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
+     *
+     * @throws  Exception
+     *
+     * @return  Form|boolean  A Form object on success, false on failure.
+     *
+     * @since  2.0.0
+     */
     public function getForm($data = array(), $loadData = true)
     {
         $form = $this->loadForm(
@@ -31,6 +46,15 @@ class BoardModelMessage extends AdminModel
         return $form;
     }
 
+    /**
+     * Method to get the data that should be injected in the form.
+     *
+     * @throws  Exception
+     *
+     * @return  mixed  The data for the form.
+     *
+     * @since  2.0.0
+     */
     protected function loadFormData()
     {
         $data = Factory::getApplication()->getUserState('com_board.edit.message.data',[]);
@@ -42,11 +66,29 @@ class BoardModelMessage extends AdminModel
         return $data;
     }
 
+    /**
+     * Returns a Table object, always creating it.
+     *
+     * @param   string  $type    The table type to instantiate
+     * @param   string  $prefix  A prefix for the table class name.
+     * @param   array   $config  Configuration array for model.
+     *
+     * @return  Table|Nested   A database object.
+     *
+     * @since  2.0.0
+     */
     public function getTable($name = 'Message', $prefix = 'BoardTable', $options = array())
     {
         return  parent::getTable($name, $prefix, array());
     }
 
+    /**
+     * Prepare and sanitise the table prior to saving.
+     *
+     * @param   Table  $table  The Table object.
+     *
+     * @since  2.4.0
+     */
     protected function prepareTable($table)
     {
         if ($table->created == 0 && $table->get('state') == 1) {
@@ -62,6 +104,17 @@ class BoardModelMessage extends AdminModel
         }
     }
 
+    /**
+     * Method to save the form data.
+     *
+     * @param   array  $data  The form data.
+     *
+     * @throws  Exception
+     *
+     * @return  boolean  True on success.
+     *
+     * @since  2.0.0
+     */
     public function save($data) {
         $data['id_user'] = Factory::getUser()->id;
         $config = ComponentHelper::getParams('com_board');
@@ -135,6 +188,15 @@ class BoardModelMessage extends AdminModel
         return true;
     }
 
+    /**
+     * Method to test whether a record can have its state changed.
+     *
+     * @param   object  $record  A record object.
+     *
+     * @return  boolean  True if allowed to change the state of the record. Defaults to the permission for the component.
+     *
+     * @since   1.6
+     */
     protected function canEditState($record)
     {
         $user = Factory::getUser();
@@ -171,6 +233,17 @@ class BoardModelMessage extends AdminModel
         throw new RuntimeException($mes);
     }
 
+    /**
+     * Method to get a single record.
+     *
+     * @param   integer  $pk  The id of the primary key.
+     *
+     * @throws  Exception
+     *
+     * @return  CMSObject|boolean  Object on success, false on failure.
+     *
+     * @since  2.0.0
+     */
     public function getItem($pk = null)
     {
         $item = parent::getItem($pk);
