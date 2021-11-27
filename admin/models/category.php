@@ -53,7 +53,7 @@ class BoardModelCategory extends AdminModel
 
         if (empty($pks))
         {
-            return \JError::raiseWarning(500, \JText::_($this->text_prefix . '_ERROR_NO_ITEMS_SELECTED'));
+            return \JError::raiseWarning(500, Text::_($this->text_prefix . '_ERROR_NO_ITEMS_SELECTED'));
         }
 
         $orderingField = $this->table->getColumnAlias('ordering');
@@ -68,7 +68,7 @@ class BoardModelCategory extends AdminModel
             {
                 // Prune items that you can't change.
                 unset($pks[$i]);
-                \JLog::add(\JText::_('JLIB_APPLICATION_ERROR_EDITSTATE_NOT_PERMITTED'), \JLog::WARNING, 'jerror');
+                \JLog::add(Text::_('JLIB_APPLICATION_ERROR_EDITSTATE_NOT_PERMITTED'), \JLog::WARNING, 'jerror');
             }
             elseif ($this->table->$orderingField != $order[$i])
             {
@@ -76,6 +76,7 @@ class BoardModelCategory extends AdminModel
 
                 if ($this->type)
                 {
+
                     $this->createTagsHelper($this->tagsObserver, $this->type, $pk, $this->typeAlias, $this->table);
                 }
 
@@ -95,7 +96,6 @@ class BoardModelCategory extends AdminModel
 
         return true;
     }
-
 
     public function getTable($name = 'Category', $prefix = 'BoardTable', $options = array())
     {

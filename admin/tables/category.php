@@ -5,6 +5,7 @@ use Joomla\CMS\Table\Table;
 use Joomla\Registry\Registry;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Access\Rules;
 
 class BoardTableCategory extends Table
 {
@@ -56,6 +57,11 @@ class BoardTableCategory extends Table
             $src['params'] = (string) $registry;
         }
 
+        if (isset($src['rules']) && is_array($src['rules'])) {
+            $rules = new Rules($src['rules']);
+            $this->setRules($rules);
+        }
+
         return parent::bind($src, $ignore);
     }
 
@@ -69,5 +75,28 @@ class BoardTableCategory extends Table
         }
 
         return false;
+    }
+
+    protected function _getAssetName()
+    {
+        return 'com_board.category.' . (int)$this->id;
+    }
+
+    protected function _getAssetTitle()
+    {
+        return $this->name;
+    }
+
+    protected function _getAssetParentId(Table $table = null, $id = null)
+    {
+        $assetParent = Table::getInstance('Asset');
+        $assetParentId = $assetParent->getRootId();
+        $assetParent->loadByname('com_board');
+
+        if ($assetParent->id) {
+            $assetParentId = $assetParent->id;
+        }
+
+        return $assetParentId;
     }
 }

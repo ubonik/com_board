@@ -44,6 +44,12 @@ HTMLHelper::_('formbehavior.chosen', 'select');
 
     <?php echo LayoutHelper::render('joomla.edit.params', $this) ?>
 
+    <?php echo HTMLHelper::_('bootstrap.addTab', 'myTab', 'permissions', Text::_('COM_BOARD_FIELDSET_RULES', true)); ?>
+    <?php echo $this->form->getInput('rules'); ?>
+    <?php echo $this->form->getInput('asset_id'); ?>
+
+    <?php echo HTMLHelper::_('bootstrap.endTab'); ?>
+
     <?php echo HTMLHelper::_('bootstrap.endTabSet') ?>
 
     <input name="task" type="hidden" value="category.edit" >

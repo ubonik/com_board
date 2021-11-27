@@ -5,6 +5,7 @@ use Joomla\CMS\MVC\Controller\AdminController;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Session\Session;
 
 class BoardControllerCategories extends AdminController
 {
@@ -17,8 +18,8 @@ class BoardControllerCategories extends AdminController
 
     public function delete()
     {
-        JSession::checkToken() or die(JText::_('JINVALID_TOKEN'));
-      //  $this->checkToken();
+        Session::checkToken() or die(JText::_('JINVALID_TOKEN'));
+
         $app = Factory::getApplication();
         $cid = $this->input->get('cid', [], 'array');
 
