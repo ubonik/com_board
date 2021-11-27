@@ -4,6 +4,9 @@ CREATE TABLE IF NOT EXISTS `#__board_categories`(
                                                     `parent_id` int(5) NOT NULL DEFAULT '0',
                                                     `alias` varchar(255) NOT NULL,
                                                     `state` tinyint(1) NOT NULL DEFAULT '1',
+                                                    `params` text NOT NULL,
+                                                    `ordering` int(11) NOT NULL,
+                                                    `asset_id` int(11) NOT NULL,
                                                     PRIMARY KEY (`id`)
 )ENGINE=InnoDb DEFAULT CHARSET=utf8;
 
@@ -30,6 +33,8 @@ CREATE TABLE IF NOT EXISTS `#__board_post` (
                                                `modified` datetime NOT NULL,
                                                `alias` varchar(255) NOT NULL,
                                                `state` tinyint(1) NOT NULL DEFAULT '1',
+                                               `params` text NOT NULL,
+                                               `asset_id` int(11) NOT NULL,
                                                PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
