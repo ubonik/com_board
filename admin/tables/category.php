@@ -34,6 +34,7 @@ class BoardTableCategory extends Table
      *
      * @since   1.7.0
      */
+
     public function publish($pks = null, $state = 1, $userId = 0)
     {
         ArrayHelper::toInteger($pks);

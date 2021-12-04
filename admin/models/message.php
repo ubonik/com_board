@@ -258,7 +258,9 @@ class BoardModelMessage extends AdminModel
             $item->images = $registry->toArray();
 
             foreach ($item->images as $k => $img) {
-                $item->images[$k] = $config->get('img_path') . '/' . $config->get('img_thumb') . '/' . $img;
+                if ($img) {
+                    $item->images[$k] = $config->get('img_path') . '/' . $img;
+                }
             }
         }
 

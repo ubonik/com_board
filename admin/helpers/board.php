@@ -15,7 +15,7 @@ class BoardHelper
 
         JHtmlSidebar::addEntry(
             Text::_('COM_BOARD_SUBMENU_CATEGORIES'),
-            'index.php?option=com_board',
+            'index.php?option=com_board&view=categories',
             $viewName == 'categories'
         );
         JHtmlSidebar::addEntry(

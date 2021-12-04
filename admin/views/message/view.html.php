@@ -73,15 +73,15 @@ class BoardViewMessage extends HtmlView
         ToolbarHelper::title($title);
 
         // Add save new button
-        if ($canDo->get('core.edit')) {
+    //    if ($canDo->get('core.edit')) {
             ToolbarHelper::apply('message.apply');
             ToolbarHelper::save('message.save');
-        }
+      //  }
 
         // Add save new button
-        if ($canDo->get('core.create')) {
+    //    if ($canDo->get('core.create')) {
             ToolbarHelper::save2new('message.save2new');
-        }
+     //   }
 
         // Add cancel button
         ToolbarHelper::cancel('message.cancel');

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <layout title="COM_BOARD_MESSAGE_MODAL_VIEW_DEFAULT_TITLE">
+        <message>COM_BOARD_MESSAGE_MODAL_VIEW_DEFAULT_DESC</message>
+    </layout>
+
+    <fields name="request">
+        <fieldset name="request" addfieldpath="/administrator/components/com_board/models/fields">
+
+            <field name="id" type="modalmess" label="COM_BOARD_CATEGORY_FIELD_LABEL"
+                   description="COM_BOARD_CATEGORY_FIELD_DESC" />
+
+
+        </fieldset>
+    </fields>
+</metadata>
