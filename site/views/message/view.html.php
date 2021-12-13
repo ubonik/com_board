@@ -2,6 +2,8 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Factory;
 
 class BoardViewMessage extends HtmlView {
 
@@ -13,8 +15,8 @@ class BoardViewMessage extends HtmlView {
         $this->item = $this->get('Item');
         $this->state = $this->get('State');
 
-        if (count($errors = $this->get('Errors')))
-        {
+        if (count($errors = $this->get('Errors'))) {
+
             JError::raiseWarning(500, implode("\n", $errors));
 
             return false;
@@ -28,10 +30,10 @@ class BoardViewMessage extends HtmlView {
     }
 
     protected function setDocument() {
-        $document = JFactory::getDocument();
+        $document = Factory::getDocument();
 
-        $document->addScript(JUri::root(TRUE).'/components/com_board/assets/js/jquery.flexslider.js');
-        $document->addStyleSheet(JUri::root(TRUE).'/components/com_board/assets/css/flexslider.css');
+        $document->addScript(Uri::root(true).'/components/com_board/assets/js/jquery.flexslider.js');
+        $document->addStyleSheet(Uri::root(true).'/components/com_board/assets/css/flexslider.css');
 
         $script = "jQuery(window).load(function() {
 				  jQuery('.flexslider').flexslider({

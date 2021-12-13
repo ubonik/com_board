@@ -6,6 +6,7 @@ use Joomla\CMS\Factory;
 
 $controller = BaseController::getInstance('Board');
 
+JLoader::register('BoardRoute', dirname(__FILE__) . '/helpers/route.php');
 JLoader::register('BoardHelper', JPATH_ADMINISTRATOR . '/components/com_board/helpers/board.php');
 $input = Factory::getApplication()->input;
 

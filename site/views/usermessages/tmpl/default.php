@@ -68,7 +68,7 @@ HTMLHelper::_('behavior.framework');
                             && Factory::getUser()->get('id') == $val->id_user);
 
                     if ($canEdit) {
-                        $link = Route::_('index.php?option=com_board&view=form&layout=edit&Itemid=238&id=' . $val->id);
+                        $link = Route::_('index.php?option=com_board&view=form&layout=edit&Itemid=' . $val->Itemid . '&id=' . $val->id);
                     }
                     ?>
                     <tr>

@@ -30,7 +30,7 @@ $input = $app->input;
                 </fieldset>
             </div>
             <div class="span3">
-                <?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
+                <?php echo LayoutHelper::render('joomla.edit.global', $this); ?>
                 <fieldset class="form-vertical">
                     <?php echo $this->form->renderFieldset('mesinfo');?>
                 </fieldset>
@@ -38,10 +38,11 @@ $input = $app->input;
 
         </div>
         <?php echo HTMLHelper::_('bootstrap.endTab') ?>
+
         <?php echo HTMLHelper::_('bootstrap.addTab', 'myTab', 'publishing', Text::_('COM_BOARD_FIELDSET_PUBLISHING', true)); ?>
         <div class="row-fluid form-horizontal-desktop">
             <div class="span6">
-                <?php echo JLayoutHelper::render('joomla.edit.publishingdata', $this); ?>
+                <?php echo LayoutHelper::render('joomla.edit.publishingdata', $this); ?>
             </div>
             <div class="span6">
                 <?php //echo JLayoutHelper::render('joomla.edit.metadata', $this); ?>
@@ -49,6 +50,7 @@ $input = $app->input;
             </div>
         </div>
         <?php echo HTMLHelper::_('bootstrap.endTab') ?>
+
         <?php echo HTMLHelper::_('bootstrap.addTab', 'myTab', 'image', Text::_('COM_BOARD_FIELDSET_IMAGE', true)); ?>
         <div id="forimgs" class="forforms">
             <div class="span6">

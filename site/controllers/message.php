@@ -32,10 +32,7 @@ class BoardControllerMessage extends FormController
     {
         $recordId = (int) isset($data[$key]) ? $data[$key] : 0;
 
-        if ($recordId)
-        {
-            //var_dump(Factory::getUser()->authorise( "core.edit", "com_doska.message.6"));
-            //exit();
+        if ($recordId) {
             // Checking editing at the record level.
             return (Factory::getUser()->authorise('core.edit', $this->option . '.message.' . $recordId)
                 || Factory::getUser()->authorise('core.edit.own', $this->option . '.message.' . $recordId));
@@ -58,11 +55,11 @@ class BoardControllerMessage extends FormController
 
         if(parent::save($key,$urlVar)) {
 
-            $menu		= Factory::getApplication()->getMenu('site');
-            $component  = ComponentHelper::getComponent($this->option);
+            $menu = Factory::getApplication()->getMenu('site');
+            $component = ComponentHelper::getComponent($this->option);
 
             $attributes = array('component_id');
-            $values     = array($component->id);
+            $values = array($component->id);
 
             $items = $menu->getItems($attributes, $values);
 
@@ -74,7 +71,7 @@ class BoardControllerMessage extends FormController
                                 Route::_(
                                     'index.php?option=' . $this->option.'&Itemid='.$item->id)
                             );
-                            return TRUE;
+                            return true;
                         }
                     }
                 }
@@ -82,16 +79,16 @@ class BoardControllerMessage extends FormController
         }
 
         $this->setRedirect('index.php');
-        return TRUE;
+        return true;
     }
 
     public function cancel($key = null)	{
         if(parent::cancel($key)) {
-            $menu		= Factory::getApplication()->getMenu('site');
+            $menu = Factory::getApplication()->getMenu('site');
             $component  = ComponentHelper::getComponent($this->option);
 
             $attributes = array('component_id');
-            $values     = array($component->id);
+            $values = array($component->id);
 
             $items = $menu->getItems($attributes, $values);
 
@@ -100,16 +97,16 @@ class BoardControllerMessage extends FormController
                     if (isset($item->query) && isset($item->query['view']))	{
                         if($item->query['view'] == 'usermessages') {
                             $this->setRedirect(
-                                JRoute::_(
+                                Route::_(
                                     'index.php?option=' . $this->option.'&Itemid='.$item->id)
                             );
-                            return TRUE;
+                            return true;
                         }
                     }
                 }
             }
         }
         $this->setRedirect('index.php');
-        return TRUE;
+        return true;
     }
 }

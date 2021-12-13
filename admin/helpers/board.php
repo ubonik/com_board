@@ -63,7 +63,6 @@ class BoardHelper
 
     public static function getActions($messageId = 0)
     {
-        //$result = new Registry();
         $result = new CMSObject();
 
         if (empty($messageId)) {
@@ -74,7 +73,6 @@ class BoardHelper
 
         $path = JPATH_ADMINISTRATOR . '/components/com_board/access.xml';
         $actions = Access::getActionsFromFile($path, "/access/section[@name='component']/");
-        //var_dump($actions);
 
         foreach ($actions as $action) {
             $result->set($action->name, Factory::getUser()->authorise($action->name, $assetName));

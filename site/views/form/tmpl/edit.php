@@ -17,7 +17,7 @@ HTMLHelper::_('bootstrap.framework');
 HTMLHelper::_('bootstrap.loadCss');
 
 ?>
-<?php ///echo Route::_('index.php?option=com_board&view=form&id=3',false)?>
+
 <div class="t_mess">
     <form action="<?php echo Route::_('index.php?option=com_board&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate form-vertical">
         <div class="btn-toolbar">
@@ -94,7 +94,7 @@ HTMLHelper::_('bootstrap.loadCss');
             <?php echo HTMLHelper::_('bootstrap.endTabSet'); ?>
         </div>
         <input type="hidden" name="task" value="message.edit" />
-        <input type="hidden" name="return" value="<?php //echo $input->getCmd('return'); ?>" />
+        <input type="hidden" name="return" value="" />
         <?php echo HTMLHelper::_('form.token'); ?>
     </form>
 
