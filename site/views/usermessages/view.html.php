@@ -62,7 +62,7 @@ class BoardViewUsermessages extends HtmlView
     protected function setDocument()
     {
         $document = Factory::getDocument();
-       // $document->addStyleSheet(Uri::base(true) . '/media/jui/css/icomoon.css');
+        $document->addStyleSheet(Uri::base(true) . '/media/jui/css/icomoon.css');
 
     }
 }

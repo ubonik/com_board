@@ -3,8 +3,6 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
-use Joomla\CMS\Table\Table;
-
 
 abstract class BoardRoute {
 
@@ -18,10 +16,6 @@ abstract class BoardRoute {
         $link_m = null;
         $link_c = null;
         $link_t = null;
-
-
-       // $id = explode(':',$id);
-       // $id = $id[0];
 
         if (!empty($catid)) {
             $link .= '&idcat=' . $catid;
@@ -40,7 +34,7 @@ abstract class BoardRoute {
         $items = $menu->getItems($attributes, $values);
 
         if(!empty($items) && is_array($items)) {
-            $tmp = explode(':',$id);
+            $tmp = explode(':', $id);
             $id_m = $tmp[0];
 
             foreach($items as $item) {
@@ -50,22 +44,18 @@ abstract class BoardRoute {
                     if($item->query['view'] == $view) {
 
                         if($item->query['id'] == $id_m) {
-                            //$link .='&Itemid='.$item->id;
-                            //return $link;
-                            $link_m = '&Itemid='.$item->id;
+                            $link_m = '&Itemid=' . $item->id;
                         }
                     }
                     if($item->query['view'] == 'messages') {
-                        $tmp_c = explode(':',$catid);
-                        $tmp_t = explode(':',$type);
+                        $tmp_c = explode(':', $catid);
+                        $tmp_t = explode(':', $type);
 
                         if(isset($item->query['idcat']) && $item->query['idcat']==$tmp_c[0]) {
-                            //$link .='&Itemid='.$item->id;
-                            //return $link;
-                            $link_c = '&Itemid='.$item->id;
+                            $link_c = '&Itemid=' . $item->id;
                         }
                         elseif(isset($item->query['idt']) && $item->query['idt'] == $tmp_t[0]) {
-                            $link_t = '&Itemid='.$item->id;
+                            $link_t = '&Itemid=' . $item->id;
                         }
                     }
                 }
@@ -94,15 +84,15 @@ abstract class BoardRoute {
         $link = '';
         // Create the link
 
-        list($cid, $calias) = explode(':',$catid);
+        list($cid, $calias) = explode(':', $catid);
 
-        $link .= 'index.php?option=com_board&view='.$view.'&idcat=' . $catid;
+        $link .= 'index.php?option=com_board&view=' . $view . '&idcat=' . $catid;
 
         $menu		= Factory::getApplication()->getMenu('site');
         $component  = ComponentHelper::getComponent('com_board');
 
         $attributes = array('component_id');
-        $values     = array($component->id);
+        $values = array($component->id);
 
         $items = $menu->getItems($attributes, $values);
         if(!empty($items) && is_array($items)) {
@@ -118,8 +108,8 @@ abstract class BoardRoute {
                 }
             }
         }
-        $link .= '&Itemid='.$menu->getDefault()->id;
-        //echo '<p>'.$link.'</p>';
+        $link .= '&Itemid=' . $menu->getDefault()->id;
+
         return $link;
     }
 
@@ -128,15 +118,15 @@ abstract class BoardRoute {
         $link = '';
         // Create the link
 
-        list($cid,$calias) = explode(':',$catid);
+        list($cid, $calias) = explode(':',$catid);
 
         $link .= 'index.php?option=com_board&view='.$view.'&idt=' . $catid;
 
-        $menu		= Factory::getApplication()->getMenu('site');
-        $component  = ComponentHelper::getComponent('com_board');
+        $menu = Factory::getApplication()->getMenu('site');
+        $component = ComponentHelper::getComponent('com_board');
 
         $attributes = array('component_id');
-        $values     = array($component->id);
+        $values = array($component->id);
 
         $items = $menu->getItems($attributes, $values);
         if(!empty($items) && is_array($items)) {
@@ -144,7 +134,7 @@ abstract class BoardRoute {
                 if (isset($item->query) && isset($item->query['view']))	{
                     //echo $view;
                     if($item->query['view'] == $view) {
-                        if(isset($item->query['idt']) && $item->query['idt'] == $cid) {
+                        if(isset($item->query['idt']) && ($item->query['idt'] == $cid)) {
                             $link .= '&Itemid=' . $item->id;
                             return $link;
                         }
@@ -152,16 +142,16 @@ abstract class BoardRoute {
                 }
             }
         }
-        $link .= '&Itemid='.$menu->getDefault()->id;
-        //echo '<p>'.$link.'</p>';
+        $link .= '&Itemid=' . $menu->getDefault()->id;
+
         return $link;
     }
 
-    public static function getFilterRoute($filter_type,$val)	{
+    public static function getFilterRoute($filter_type, $val)	{
         $view = 'messages';
         $link = '';
 
-        $link .= 'index.php?option=com_board&view='.$view.'&filter_'.$filter_type.'=' . $val;
+        $link .= 'index.php?option=com_board&view=' . $view . '&filter_' . $filter_type.'=' . $val;
 
         return $link;
     }

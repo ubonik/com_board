@@ -17,7 +17,7 @@ HTMLHelper::_('bootstrap.loadCss');
         <?php foreach($this->items as  $val) :?>
             <div class="t_mess">
                 <h4 class="title_p_mess">
-                    <?php $link = BoardRoute::getMessageRoute($val->slug,$val->catslug,$val->typeslug);?>
+                    <?php $link = BoardRoute::getMessageRoute($val->slug, $val->catslug, $val->typeslug);?>
                     <a href="<?php echo Route::_( $link);?>">
                         <?php echo $val->title;?>
                     </a>

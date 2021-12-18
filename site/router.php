@@ -66,6 +66,7 @@ class BoardRouter extends RouterBase
                 if(isset($query['layout'])) {
                     unset($query['view']);
                     unset($query['layout']);
+
                     return $segments;
                 }
             }
@@ -76,11 +77,11 @@ class BoardRouter extends RouterBase
             unset($query['view']);
 
             if(isset($query['idcat'])) {
-                list($catid,$catalias) = explode(':',$query['idcat']);
+                list($catid, $catalias) = explode(':', $query['idcat']);
             }
 
             if(isset($query['idt'])) {
-                list($typeid,$typealias) = explode(':',$query['idt']);
+                list($typeid, $typealias) = explode(':', $query['idt']);
             }
 
             if($menuItem->query['idcat'] == $catid) {
@@ -91,8 +92,8 @@ class BoardRouter extends RouterBase
                 }
 
                 if(isset($query['id'])) {
-                    $id = explode(':',$query['id']);
-                    $segments[] = $id[0].'-'.$id[1];
+                    $id = explode(':', $query['id']);
+                    $segments[] = $id[0] . '-' . $id[1];
                     unset($query['id']);
                 }
 
@@ -106,47 +107,51 @@ class BoardRouter extends RouterBase
                 }
 
                 if(isset($query['id'])) {
-                    $id = explode(':',$query['id']);
-                    $segments[] = $id[0].'-'.$id[1];
+                    $id = explode(':', $query['id']);
+                    $segments[] = $id[0] . '-' . $id[1];
                     unset($query['id']);
                 }
 
                 return $segments;
             }
-
         }
 
         //unset($query['Itemid']);
     //    $segments = array();
 
-        if(isset($query['view']))
-        {
+        if(isset($query['view'])) {
             $segments[] = $query['view'];
             unset($query['view']);
         }
 
-        if(isset($query['idcat']) && !isset($query['id']))
-        {
+        if(isset($query['idcat']) && !isset($query['id'])) {
             $cid = explode(':', $query['idcat']);
-            $segments[] = $cid[0].'-'.$cid[1];
-        };
-        if(isset($query['idt']) && !isset($query['id']))
-        {
-            $tid = explode(':', $query['idt']);
-            $segments[] = $tid[0].'-'.$tid[1];
-        };
+            if (isset($cid[1])) {
+                $segments[] = $cid[0] . '-' . $cid[1];
+            } else {
+                $segments[] = $cid[0];
+            }
+        }
+        if(isset($query['idt']) && !isset($query['id'])) {
 
-        if(isset($query['id']))
-        {
+            $tid = explode(':', $query['idt']);
+
+            if (isset($tid[1])) {
+                $segments[] = $tid[0] . '-' . $tid[1];
+            } else {
+                $segments[] = $tid[0];
+            }
+        }
+
+        if(isset($query['id'])) {
             $id = explode(':', $query['id']);
-            $segments[] = $id[0].'-'.$id[1];
+            $segments[] = $id[0] . '-' . $id[1];
             unset($query['id']);
         };
         unset($query['idt']);
         unset($query['idcat']);
 
         return $segments;
-
     }
 
     public function parse(&$segments)
@@ -155,7 +160,7 @@ class BoardRouter extends RouterBase
         $total = count($segments);
 
         for($i = 0; $i < $total;$i++) {
-            $segments[$i]  = preg_replace('/-/',':',$segments[$i],1);
+            $segments[$i]  = preg_replace('/-/',':', $segments[$i],1);
         }
 
         $item = $this->menu->getActive();
@@ -176,6 +181,7 @@ class BoardRouter extends RouterBase
                 if(($item->query['idcat'] == $message->id_categories) ||($item->query['idt'] == $message->id_types)) {
                     $vars['view'] = 'message';
                     $vars['id'] =(int)$segments[0];
+
                     return $vars;
                 }
             }
@@ -201,7 +207,7 @@ class BoardRouter extends RouterBase
                     break;
                 }
 
-                list($id,$alias) = explode(':',$segments[1]);
+                list($id, $alias) = explode(':', $segments[1]);
 
                 $query  = $db->getQuery(true);
                 $query->select($db->quoteName(array('alias', 'id')));
@@ -236,7 +242,7 @@ class BoardRouter extends RouterBase
             case 'message':
                 $vars['view'] = $segments[0];
 
-                list($id,$alias) = explode(':',$segments[1]);
+                list($id,$alias) = explode(':', $segments[1]);
 
                 $query = $db->getQuery(true);
                 $query->select($db->quoteName(array('alias', 'id')));
