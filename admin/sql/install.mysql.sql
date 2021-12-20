@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS `#__board_categories`(
                                                     `id` int(5) unsigned NOT NULL AUTO_INCREMENT,
                                                     `name` varchar(255) NOT NULL,
-                                                    `parent_id` int(5) NOT NULL DEFAULT '0',
+                                                    `parentid` int(5) NOT NULL DEFAULT '0',
                                                     `alias` varchar(255) NOT NULL,
                                                     `state` tinyint(1) NOT NULL DEFAULT '1',
                                                     `params` text NOT NULL,
