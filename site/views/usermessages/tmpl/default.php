@@ -12,7 +12,6 @@ HTMLHelper::_('bootstrap.loadCss');
 HTMLHelper::_('behavior.framework');
 ?>
 
-
 <div class="t_mess">
 
     <form action="<?php echo Route::_('index.php?option=com_board&view=usermessages'); ?>"
@@ -61,7 +60,7 @@ HTMLHelper::_('behavior.framework');
             <tbody>
 
             <?php if (!empty($this->items)) : ?>
-                <?php foreach($this->items as $key =>$val) :?>
+                <?php foreach ($this->items as $key => $val) : ?>
                     <?php
 
                     $canEdit = $this->canDo->get('core.edit') || ($this->canDo->get('core.edit.own')
@@ -78,11 +77,11 @@ HTMLHelper::_('behavior.framework');
                         </td>
                         <td>
 
-                            <?php if ($canEdit) :?>
-                                <?php echo HTMLHelper::_('link', $link, $val->title, array('title'=>Text::_('COM_BOARD_EDIT_MESSAGE')))  ?>
-                            <?php else :?>
-                                <?php echo $val->title;?>
-                            <?php endif;?>
+                            <?php if ($canEdit) : ?>
+                                <?php echo HTMLHelper::_('link', $link, $val->title, array('title' => Text::_('COM_BOARD_EDIT_MESSAGE'))) ?>
+                            <?php else : ?>
+                                <?php echo $val->title; ?>
+                            <?php endif; ?>
 
                         </td>
 
@@ -100,12 +99,12 @@ HTMLHelper::_('behavior.framework');
                             ?>
 
                             <?php echo HTMLHelper::_(
-                                    'jgrid.published', $val->state, $key, 'usermessages.', $canChange,
-                                    'cb', $val->publish_up, $val->publish_down); ?>
+                                'jgrid.published', $val->state, $key, 'usermessages.', $canChange,
+                                'cb', $val->publish_up, $val->publish_down); ?>
 
                             <?php echo HTMLHelper::_(
-                                    'jgrid.action', $key, 'delete', 'usermessages.', 'delete', 'delete message',
-                                    '', false, 'trash', '', $canChange); ?>
+                                'jgrid.action', $key, 'delete', 'usermessages.', 'delete', 'delete message',
+                                '', false, 'trash', '', $canChange); ?>
 
                         </td>
 
@@ -114,7 +113,7 @@ HTMLHelper::_('behavior.framework');
                             <?php
                             $canModerate = $this->canDo->get('core.edit.state');
                             ?>
-                            <?php echo BoardHelper::confirm_mes($val->confirm,$key,'messages.',false);?>
+                            <?php echo BoardHelper::confirm_mes($val->confirm, $key, 'messages.', false); ?>
                         </td>
 
                         <td>
@@ -122,18 +121,18 @@ HTMLHelper::_('behavior.framework');
                         </td>
 
                     </tr>
-                <?php endforeach;?>
-            <?php endif;?>
+                <?php endforeach; ?>
+            <?php endif; ?>
             </tbody>
 
         </table>
 
         <div>
-            <input type="hidden" name="task" value="" />
-            <input type="hidden" name="boxchecked" value="0" />
+            <input type="hidden" name="task" value=""/>
+            <input type="hidden" name="boxchecked" value="0"/>
 
-            <input type="hidden" name="filter_order" value="<?php echo $this->listOrder?>" />
-            <input type="hidden" name="filter_order_Dir" value="<?php echo $this->listDirn?>" />
+            <input type="hidden" name="filter_order" value="<?php echo $this->listOrder ?>"/>
+            <input type="hidden" name="filter_order_Dir" value="<?php echo $this->listDirn ?>"/>
 
             <?php echo HTMLHelper::_('form.token'); ?>
         </div>

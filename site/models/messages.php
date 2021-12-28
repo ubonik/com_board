@@ -37,44 +37,42 @@ class BoardModelMessages extends ListModel
         $query->where('p.confirm = "' . (int)$confirm . '"');
 
         //category
-        $category = (int)$this->getState('filter.category',false);
-        if($category) {
-            $query->where('p.id_categories = "'.$category.'"');
+        $category = (int)$this->getState('filter.category', false);
+        if ($category) {
+            $query->where('p.id_categories = "' . $category . '"');
         }
 
-        $type = (int)$this->getState('filter.type',false);
-        if($type) {
-            $query->where('p.id_types = '.$type);
+        $type = (int)$this->getState('filter.type', false);
+        if ($type) {
+            $query->where('p.id_types = ' . $type);
         }
 
-        $author = (int)$this->getState('filter.author',false);
-        if($author) {
-            $query->where('p.id_user = '.$author);
+        $author = (int)$this->getState('filter.author', false);
+        if ($author) {
+            $query->where('p.id_user = ' . $author);
         }
 
-        $town = (string)$this->getState('filter.town',false);
-        if($town) {
-            $query->where('p.town = "'.$town.'"');
+        $town = (string)$this->getState('filter.town', false);
+        if ($town) {
+            $query->where('p.town = "' . $town . '"');
         }
 
-        $min_price = (int)$this->getState('filter.price.min',false);
-        $max_price = (int)$this->getState('filter.price.max',false);
+        $min_price = (int)$this->getState('filter.price.min', false);
+        $max_price = (int)$this->getState('filter.price.max', false);
 
-        if($min_price && $max_price) {
-            $query->where('p.price >= '.$min_price);
-            $query->where('p.price <= '.$max_price);
-        }
-        elseif($min_price && $max_price == false) {
-            $query->where('p.price >= "'.$min_price.'"');
-        }
-        elseif($max_price && $min_price == false) {
-            $query->where('p.price <= "'.$max_price.'"');
+        if ($min_price && $max_price) {
+            $query->where('p.price >= ' . $min_price);
+            $query->where('p.price <= ' . $max_price);
+        } elseif ($min_price && $max_price == false) {
+            $query->where('p.price >= "' . $min_price . '"');
+        } elseif ($max_price && $min_price == false) {
+            $query->where('p.price <= "' . $max_price . '"');
         }
 
         $query->where('p.publish_up <= NOW()');
         $query->where('p.publish_down >= NOW()');
 
-        $orderCol  = $this->state->get('list.ordering', 'id');
+        $orderCol = $this->state->get('list.ordering', 'id');
         $orderDirn = $this->state->get('list.direction', 'ASC');
         $query->order($orderCol . ' ' . $orderDirn);
 
@@ -89,7 +87,8 @@ class BoardModelMessages extends ListModel
      *
      * @since  2.0.0
      */
-    protected function populateState($ordering = null,$direction = null) {
+    protected function populateState($ordering = null, $direction = null)
+    {
 
         $app = JFactory::getApplication();
         $input = $app->input;

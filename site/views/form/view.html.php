@@ -17,8 +17,7 @@ class BoardViewForm extends HtmlView
         $this->item = $this->get('item');
         $this->script = $this->get('script');
 
-        if (count($errors = $this->get('Errors')))
-        {
+        if (count($errors = $this->get('Errors'))) {
             JError::raiseError(500, implode('<br />', $errors));
 
             return false;

@@ -19,7 +19,8 @@ HTMLHelper::_('bootstrap.loadCss');
 ?>
 
 <div class="t_mess">
-    <form action="<?php echo Route::_('index.php?option=com_board&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate form-vertical">
+    <form action="<?php echo Route::_('index.php?option=com_board&id=' . (int)$this->item->id); ?>" method="post"
+          name="adminForm" id="adminForm" class="form-validate form-vertical">
         <div class="btn-toolbar">
             <div class="btn-group">
                 <button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('message.save')">
@@ -50,7 +51,7 @@ HTMLHelper::_('bootstrap.loadCss');
                 <div class="span12">
                     <?php echo LayoutHelper::render('joomla.edit.global', $this); ?>
                     <fieldset class="form-vertical">
-                        <?php echo $this->form->renderFieldset('mesinfo');?>
+                        <?php echo $this->form->renderFieldset('mesinfo'); ?>
                     </fieldset>
                 </div>
             </div>
@@ -84,7 +85,7 @@ HTMLHelper::_('bootstrap.loadCss');
             <?php echo LayoutHelper::render('joomla.edit.params', $this); ?>
 
 
-            <?php echo $this->form->getField('id')->renderField();?>
+            <?php echo $this->form->getField('id')->renderField(); ?>
             <?php echo HTMLHelper::_('bootstrap.addTab', 'myTab', 'permissions', Text::_('COM_BOARD_FIELDSET_RULES', true)); ?>
             <?php echo $this->form->getInput('rules'); ?>
             <?php echo $this->form->getInput('asset_id'); ?>
@@ -93,8 +94,8 @@ HTMLHelper::_('bootstrap.loadCss');
 
             <?php echo HTMLHelper::_('bootstrap.endTabSet'); ?>
         </div>
-        <input type="hidden" name="task" value="message.edit" />
-        <input type="hidden" name="return" value="" />
+        <input type="hidden" name="task" value="message.edit"/>
+        <input type="hidden" name="return" value=""/>
         <?php echo HTMLHelper::_('form.token'); ?>
     </form>
 

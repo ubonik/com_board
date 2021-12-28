@@ -14,7 +14,8 @@ class BoardControllerMessage extends FormController
         parent::__construct($config);
     }
 
-    protected function allowAdd($data = array()) {
+    protected function allowAdd($data = array())
+    {
         $user = Factory::getUser();
         return ($user->authorise('core.create', $this->option) || $user->authorise('core.create.messages', $this->option));
     }
@@ -22,23 +23,21 @@ class BoardControllerMessage extends FormController
     /**
      * Overriding the method to check whether the user can edit an existing record.
      *
-     * @param   array   $data  Data array.
-     * @param   string  $key   Primary key name.
+     * @param array $data Data array.
+     * @param string $key Primary key name.
      *
      * @return  boolean  True if the record is allowed to be edited.
      * @since 2.0
      */
     protected function allowEdit($data = array(), $key = 'id')
     {
-        $recordId = (int) isset($data[$key]) ? $data[$key] : 0;
+        $recordId = (int)isset($data[$key]) ? $data[$key] : 0;
 
         if ($recordId) {
             // Checking editing at the record level.
             return (Factory::getUser()->authorise('core.edit', $this->option . '.message.' . $recordId)
                 || Factory::getUser()->authorise('core.edit.own', $this->option . '.message.' . $recordId));
-        }
-        else
-        {
+        } else {
             // Checking the editing at the component level.
             return parent::allowEdit($data, $key);
         }
@@ -51,9 +50,10 @@ class BoardControllerMessage extends FormController
         return $model;
     }
 
-    public function save($key = null, $urlVar = null)	{
+    public function save($key = null, $urlVar = null)
+    {
 
-        if(parent::save($key,$urlVar)) {
+        if (parent::save($key, $urlVar)) {
 
             $menu = Factory::getApplication()->getMenu('site');
             $component = ComponentHelper::getComponent($this->option);
@@ -63,13 +63,13 @@ class BoardControllerMessage extends FormController
 
             $items = $menu->getItems($attributes, $values);
 
-            if(!empty($items) && is_array($items)) {
-                foreach($items as $item) {
-                    if (isset($item->query) && isset($item->query['view']))	{
-                        if($item->query['view'] == 'usermessages') {
+            if (!empty($items) && is_array($items)) {
+                foreach ($items as $item) {
+                    if (isset($item->query) && isset($item->query['view'])) {
+                        if ($item->query['view'] == 'usermessages') {
                             $this->setRedirect(
                                 Route::_(
-                                    'index.php?option=' . $this->option.'&Itemid='.$item->id)
+                                    'index.php?option=' . $this->option . '&Itemid=' . $item->id)
                             );
                             return true;
                         }
@@ -82,23 +82,24 @@ class BoardControllerMessage extends FormController
         return true;
     }
 
-    public function cancel($key = null)	{
-        if(parent::cancel($key)) {
+    public function cancel($key = null)
+    {
+        if (parent::cancel($key)) {
             $menu = Factory::getApplication()->getMenu('site');
-            $component  = ComponentHelper::getComponent($this->option);
+            $component = ComponentHelper::getComponent($this->option);
 
             $attributes = array('component_id');
             $values = array($component->id);
 
             $items = $menu->getItems($attributes, $values);
 
-            if(!empty($items) && is_array($items)) {
-                foreach($items as $item) {
-                    if (isset($item->query) && isset($item->query['view']))	{
-                        if($item->query['view'] == 'usermessages') {
+            if (!empty($items) && is_array($items)) {
+                foreach ($items as $item) {
+                    if (isset($item->query) && isset($item->query['view'])) {
+                        if ($item->query['view'] == 'usermessages') {
                             $this->setRedirect(
                                 Route::_(
-                                    'index.php?option=' . $this->option.'&Itemid='.$item->id)
+                                    'index.php?option=' . $this->option . '&Itemid=' . $item->id)
                             );
                             return true;
                         }

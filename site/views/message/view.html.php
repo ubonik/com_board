@@ -5,12 +5,14 @@ use Joomla\CMS\MVC\View\HtmlView;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Factory;
 
-class BoardViewMessage extends HtmlView {
+class BoardViewMessage extends HtmlView
+{
 
     protected $item;
     protected $state;
 
-    public function display($tpl = null) {
+    public function display($tpl = null)
+    {
 
         $this->item = $this->get('Item');
         $this->state = $this->get('State');
@@ -25,15 +27,16 @@ class BoardViewMessage extends HtmlView {
         $model = $this->getModel();
         $model->hit();
 
-         parent::display($tpl);
-         $this->setDocument();
+        parent::display($tpl);
+        $this->setDocument();
     }
 
-    protected function setDocument() {
+    protected function setDocument()
+    {
         $document = Factory::getDocument();
 
-        $document->addScript(Uri::root(true).'/components/com_board/assets/js/jquery.flexslider.js');
-        $document->addStyleSheet(Uri::root(true).'/components/com_board/assets/css/flexslider.css');
+        $document->addScript(Uri::root(true) . '/components/com_board/assets/js/jquery.flexslider.js');
+        $document->addStyleSheet(Uri::root(true) . '/components/com_board/assets/css/flexslider.css');
 
         $script = "jQuery(window).load(function() {
 				  jQuery('.flexslider').flexslider({

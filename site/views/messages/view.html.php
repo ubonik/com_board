@@ -54,15 +54,15 @@ class BoardViewMessages extends HtmlView
         $this->state = $this->get('state');
         $this->params = Factory::getApplication()->getParams();
 
-        if(is_array($items)) {
-            foreach($items as $item) {
+        if (is_array($items)) {
+            foreach ($items as $item) {
                 $item->slug = $item->alias ? $item->id . ':' . $item->alias : $item->id;
 
-                if($item->id_categories && $item->catalias) {
+                if ($item->id_categories && $item->catalias) {
                     $item->catslug = $item->id_categories . ':' . $item->catalias;
                 }
 
-                if($item->id_types && $item->typealias) {
+                if ($item->id_types && $item->typealias) {
                     $item->typeslug = $item->id_types . ':' . $item->typealias;
                 }
 

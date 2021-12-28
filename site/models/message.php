@@ -19,7 +19,7 @@ class BoardModelMessage extends ItemModel
 
     public function getItem($pk = null)
     {
-        $pk = (!empty($pk)) ? : $this->getState('message.id');
+        $pk = (!empty($pk)) ?: $this->getState('message.id');
 
         if ($pk) {
             $db = $this->getDbo();
@@ -30,14 +30,14 @@ class BoardModelMessage extends ItemModel
             );
             $query->from('#__board_post AS p');
             $query->select('c.name as category, c.alias AS catalias');
-            $query->join('LEFT','#__board_categories AS c ON c.id=p.id_categories');
+            $query->join('LEFT', '#__board_categories AS c ON c.id=p.id_categories');
             $query->select('t.name as type, t.alias AS typealias');
-            $query->join('LEFT','#__board_types AS t ON t.id=p.id_types');
+            $query->join('LEFT', '#__board_types AS t ON t.id=p.id_types');
 
             $query->select('u.name AS author_name')
                 ->join('LEFT', '#__users AS u ON u.id=p.id_user');
 
-            $query->where('p.id = '.$pk);
+            $query->where('p.id = ' . $pk);
             $query->where('p.state = 1');
             $query->where('p.confirm = "1"');
             $query->where('p.publish_up <= NOW()');
@@ -48,7 +48,7 @@ class BoardModelMessage extends ItemModel
 
             $data = $db->loadObject();
 
-            if($data) {
+            if ($data) {
                 $params = new JRegistry;
                 $params->loadString($data->params);
                 $data->params = $params;
@@ -57,11 +57,11 @@ class BoardModelMessage extends ItemModel
                 $params->merge($data->params);
 
                 $data->params = $params;
-        
+
                 return $data;
             }
         }
-            return false;
+        return false;
     }
 
     protected function getStoreId($id = '')
@@ -74,8 +74,8 @@ class BoardModelMessage extends ItemModel
 
     public function hit($pk = 0)
     {
-        $pk = (!empty($pk)) ? : (int)$this->getState('message.id');
-        $table = Table::getInstance('Message','BoardTable');
+        $pk = (!empty($pk)) ?: (int)$this->getState('message.id');
+        $table = Table::getInstance('Message', 'BoardTable');
 
         if ($table->load($pk)) {
             $table->hit($pk);
