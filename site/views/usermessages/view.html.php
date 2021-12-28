@@ -19,26 +19,26 @@ class BoardViewUsermessages extends HtmlView
     {
         $items = $this->get('items');
         $this->state = $this->get('state');
-       $this->pagination = $this->get('pagination');
+        $this->pagination = $this->get('pagination');
         $this->params = Factory::getApplication()->getParams();
 
         $this->listOrder = $this->state->get('list.ordering');
         $this->listDirn = $this->state->get('list.direction');
 
         if ($items) {
-            $menu		= Factory::getApplication()->getMenu('site');
-            $component  = ComponentHelper::getComponent('com_board');
+            $menu = Factory::getApplication()->getMenu('site');
+            $component = ComponentHelper::getComponent('com_board');
 
             $attributes = array('component_id');
-            $values     = array($component->id);
+            $values = array($component->id);
 
             $menu_items = $menu->getItems($attributes, $values);
 
-            if(!empty($menu_items) && is_array($menu_items)) {
-                foreach($menu_items as $item) {
-                    if (isset($item->query) && isset($item->query['view']))	{
+            if (!empty($menu_items) && is_array($menu_items)) {
+                foreach ($menu_items as $item) {
+                    if (isset($item->query) && isset($item->query['view'])) {
 
-                        if($item->query['view'] == 'form') {
+                        if ($item->query['view'] == 'form') {
                             $Itemid = $item->id;
                         }
                     }
@@ -53,7 +53,7 @@ class BoardViewUsermessages extends HtmlView
         }
 
         $this->items = $items;
-        $this->canDo =Boardhelper::getActions();
+        $this->canDo = Boardhelper::getActions();
 
         parent::display($tpl);
         $this->setDocument();
@@ -63,6 +63,5 @@ class BoardViewUsermessages extends HtmlView
     {
         $document = Factory::getDocument();
         $document->addStyleSheet(Uri::base(true) . '/media/jui/css/icomoon.css');
-
     }
 }
