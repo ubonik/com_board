@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<form>
+<form addrulepath='/administrator/components/com_board/models/rules'>
 	<fieldset>
 		
 		<field name="id" type="hidden" default=""/>
@@ -86,7 +86,7 @@
 		
 	</fields>
 	
-	<fields name="params">
+<fields name="params">
         <fieldset
             name="params"
             label="JGLOBAL_FIELDSET_DISPLAY_OPTIONS"
@@ -126,7 +126,7 @@
             </field>
 			
         </fieldset>
-    </fields>
+</fields>
 
 	<fieldset name="accesscontrol">
 	<field name="asset_id" type="hidden" filter="unset" />

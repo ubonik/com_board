@@ -22,17 +22,17 @@ $input = $app->input;
     <?php echo LayoutHelper::render('joomla.edit.title_alias', $this) ?>
     <div class="form-gorisontal">
         <?php echo HTMLHelper::_('bootstrap.startTabSet', 'myTab', ['active' => 'general']) ?>
-        <?php echo HTMLHelper::_('bootstrap.addTab', 'myTab', 'general', 'COM_BOARD_MESSAGE_CONTENT', true) ?>
+        <?php echo HTMLHelper::_('bootstrap.addTab', 'myTab', 'general', Text::_('COM_BOARD_MESSAGE_CONTENT', true)) ?>
         <div class="row-fluid">
             <div class="span9">
                 <fieldset class="adminForm">
-                    <?php echo $this->form->getInput('text'); ?>
+                    <?php echo $this->form->getInput('text'); ?> <!-- текстовый редактор  -->
                 </fieldset>
             </div>
             <div class="span3">
-                <?php echo LayoutHelper::render('joomla.edit.global', $this); ?>
+                <?php echo LayoutHelper::render('joomla.edit.global', $this); ?> <!-- поле состояние -->
                 <fieldset class="form-vertical">
-                    <?php echo $this->form->renderFieldset('mesinfo');?>
+                    <?php echo $this->form->renderFieldset('mesinfo');?> <!-- поля цена город категория тип -->
                 </fieldset>
             </div>
 
@@ -42,11 +42,11 @@ $input = $app->input;
         <?php echo HTMLHelper::_('bootstrap.addTab', 'myTab', 'publishing', Text::_('COM_BOARD_FIELDSET_PUBLISHING', true)); ?>
         <div class="row-fluid form-horizontal-desktop">
             <div class="span6">
-                <?php echo LayoutHelper::render('joomla.edit.publishingdata', $this); ?>
+                <?php echo LayoutHelper::render('joomla.edit.publishingdata', $this); ?> <!-- поля дат, количество просмотров -->
             </div>
             <div class="span6">
                 <?php //echo JLayoutHelper::render('joomla.edit.metadata', $this); ?>
-                <?php echo $this->form->renderFieldset('metadata') ?>
+                <?php echo $this->form->renderFieldset('metadata') ?> <!-- поля метаданных -->
             </div>
         </div>
         <?php echo HTMLHelper::_('bootstrap.endTab') ?>
@@ -54,7 +54,7 @@ $input = $app->input;
         <?php echo HTMLHelper::_('bootstrap.addTab', 'myTab', 'image', Text::_('COM_BOARD_FIELDSET_IMAGE', true)); ?>
         <div id="forimgs" class="forforms">
             <div class="span6">
-                <?php echo $this->form->getControlGroup('images'); ?>
+                <?php //echo $this->form->getControlGroup('images'); ?>
                 <?php foreach ($this->form->getGroup('images') as $field) : ?>
                     <?php echo $field->getControlGroup(); ?>
                 <?php endforeach; ?>
@@ -62,10 +62,13 @@ $input = $app->input;
         </div>
         <?php echo HTMLHelper::_('bootstrap.endTab'); ?>
 
-        <?php echo LayoutHelper::render('joomla.edit.params', $this); ?>
+        <?php echo HTMLHelper::_('bootstrap.addTab', 'myTab', 'params', Text::_('JGLOBAL_FIELDSET_DISPLAY_OPTIONS', true)); ?>
+
+        <?php echo $this->form->renderFieldset('params') ?>
+
+        <?php echo HTMLHelper::_('bootstrap.endTab'); ?>
 
         <?php echo $this->form->getField('id')->renderField();?>
-        <?php echo $this->form->getField('id_user')->renderField();?>
 
         <?php echo HTMLHelper::_('bootstrap.addTab', 'myTab', 'permissions', Text::_('COM_BOARD_FIELDSET_RULES', true)); ?>
         <?php echo $this->form->getInput('rules'); ?>
