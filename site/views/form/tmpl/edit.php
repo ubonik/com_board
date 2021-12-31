@@ -82,8 +82,11 @@ HTMLHelper::_('bootstrap.loadCss');
             </div>
             <?php echo HTMLHelper::_('bootstrap.endTab'); ?>
 
-            <?php echo LayoutHelper::render('joomla.edit.params', $this); ?>
+            <?php echo HTMLHelper::_('bootstrap.addTab', 'myTab', 'params', Text::_('JGLOBAL_FIELDSET_DISPLAY_OPTIONS', true)); ?>
 
+            <?php echo $this->form->renderFieldset('params') ?>
+
+            <?php echo HTMLHelper::_('bootstrap.endTab'); ?>
 
             <?php echo $this->form->getField('id')->renderField(); ?>
             <?php echo HTMLHelper::_('bootstrap.addTab', 'myTab', 'permissions', Text::_('COM_BOARD_FIELDSET_RULES', true)); ?>
